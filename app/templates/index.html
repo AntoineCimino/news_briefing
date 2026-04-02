@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Briefing du jour{% endblock %}
+{% block content %}
+
+{% if briefing %}
+  <div class="meta-bar">
+    <span class="badge badge-{{ briefing.mode }}">{{ briefing.mode }}</span>
+    <span class="ts">{{ briefing.created_at[:19].replace("T", " ") }} UTC</span>
+    <span class="count">{{ briefing.article_count }} articles</span>
+  </div>
+  <article class="briefing">
+    {{ briefing_html | safe }}
+  </article>
+{% else %}
+  <div class="empty">
+    <p>Aucun briefing disponible.</p>
+    <form method="post" action="/run">
+      <input type="hidden" name="mode" value="no-llm">
+      <button type="submit" class="btn">Générer maintenant (no-llm)</button>
+    </form>
+  </div>
+{% endif %}
+
+{% if market %}
+  <section class="market-preview">
+    <h2>Marchés — aperçu</h2>
+    <table>
+      <thead><tr><th>Actif</th><th>Prix</th><th>1j %</th></tr></thead>
+      <tbody>
+      {% for row in market %}
+        <tr>
+          <td>{{ row.label or row.ticker }}</td>
+          <td class="num">{{ "%.2f" | format(row.price) }}</td>
+          <td class="num {{ 'pos' if row.change_pct >= 0 else 'neg' }}">
+            {{ "%+.2f" | format(row.change_pct) }}%
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <a href="/market" class="link-more">Voir tout →</a>
+  </section>
+{% endif %}
+
+{% endblock %}

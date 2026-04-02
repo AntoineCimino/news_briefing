@@ -1,0 +1,120 @@
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --border: #2a2d3a;
+  --text: #e2e8f0;
+  --muted: #718096;
+  --accent: #4a90d9;
+  --pos: #48bb78;
+  --neg: #f56565;
+  --badge-api: #805ad5;
+  --badge-local: #2b6cb0;
+  --badge-no-llm: #2d3748;
+  font-size: 15px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nav */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.75rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.brand { font-weight: 700; font-size: 1.05rem; color: var(--text); text-decoration: none; }
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+.nav-links a:hover { color: var(--text); }
+
+/* Main */
+main { flex: 1; max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; width: 100%; }
+footer { text-align: center; color: var(--muted); padding: 1.5rem; font-size: 0.8rem; }
+
+/* Meta bar */
+.meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+.back { color: var(--accent); text-decoration: none; margin-right: auto; }
+.ts { font-family: monospace; }
+
+/* Badges */
+.badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.badge-api { background: var(--badge-api); color: #fff; }
+.badge-local { background: var(--badge-local); color: #fff; }
+.badge-no-llm { background: var(--badge-no-llm); color: var(--muted); border: 1px solid var(--border); }
+
+/* Briefing article */
+.briefing { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; }
+.briefing h1 { font-size: 1.4rem; margin-bottom: 1.25rem; }
+.briefing h2 { font-size: 1.1rem; color: var(--accent); margin: 1.5rem 0 0.6rem; }
+.briefing ul { padding-left: 1.4rem; }
+.briefing li { margin-bottom: 0.35rem; color: var(--text); }
+.briefing p { margin-bottom: 0.75rem; color: var(--muted); }
+.briefing table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+.briefing th, .briefing td { border: 1px solid var(--border); padding: 0.4rem 0.75rem; font-size: 0.88rem; }
+.briefing th { background: var(--bg); color: var(--muted); text-align: left; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); font-size: 0.88rem; text-align: left; }
+th { color: var(--muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
+tr:hover { background: var(--surface); }
+.num { text-align: right; font-family: monospace; }
+.pos { color: var(--pos); }
+.neg { color: var(--neg); }
+
+/* Market sections */
+.market-group { margin-bottom: 2.5rem; }
+.market-group h2 { font-size: 1rem; color: var(--muted); margin-bottom: 0.5rem; }
+.market-preview { margin-top: 2.5rem; }
+.market-preview h2 { font-size: 1rem; color: var(--muted); margin-bottom: 0.75rem; }
+.link-more { display: inline-block; margin-top: 0.75rem; color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+
+/* History */
+.history-table td a { color: var(--accent); text-decoration: none; }
+h1 { font-size: 1.3rem; margin-bottom: 1.5rem; }
+
+/* Button */
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+.btn:hover { opacity: 0.85; }
+
+/* Empty state */
+.empty { color: var(--muted); padding: 3rem 0; }

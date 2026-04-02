@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Briefing {{ briefing.briefing_id if briefing else '' }}{% endblock %}
+{% block content %}
+
+{% if briefing %}
+  <div class="meta-bar">
+    <a href="/history" class="back">← Historique</a>
+    <span class="badge badge-{{ briefing.mode }}">{{ briefing.mode }}</span>
+    <span class="ts">{{ briefing.created_at[:19].replace("T", " ") }} UTC</span>
+    <span class="count">{{ briefing.article_count }} articles</span>
+  </div>
+  <article class="briefing">
+    {{ briefing_html | safe }}
+  </article>
+{% else %}
+  <p class="empty">Briefing introuvable.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Marchés{% endblock %}
+{% block content %}
+
+<h1>Données de marché</h1>
+
+{% for group, rows in grouped.items() %}
+  {% if rows %}
+    <section class="market-group">
+      <h2>{{ group }}</h2>
+      <table>
+        <thead><tr><th>Actif</th><th>Prix</th><th>1j %</th><th>Volume</th></tr></thead>
+        <tbody>
+        {% for row in rows %}
+          <tr>
+            <td><strong>{{ row.ticker }}</strong> <small>{{ row.label }}</small></td>
+            <td class="num">{{ "%.2f" | format(row.price) }}</td>
+            <td class="num {{ 'pos' if row.change_pct >= 0 else 'neg' }}">
+              {{ "%+.2f" | format(row.change_pct) }}%
+            </td>
+            <td class="num">{{ "{:,.0f}".format(row.volume) if row.volume else "—" }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  {% endif %}
+{% endfor %}
+
+{% endblock %}
