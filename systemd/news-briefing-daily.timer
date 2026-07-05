@@ -1,0 +1,11 @@
+[Unit]
+Description=news_briefing — quotidien à 7h (per daily_run.sh) + boot catchup si run manqué
+
+[Timer]
+OnCalendar=*-*-* 07:00:00
+OnBootSec=2min
+Persistent=true
+RandomizedDelaySec=30s
+
+[Install]
+WantedBy=timers.target

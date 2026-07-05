@@ -1,0 +1,12 @@
+[Unit]
+Description=news_briefing — daily synthesis run
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/dev/data/news_briefing
+ExecStart=%h/dev/data/news_briefing/scripts/daily_run.sh
+StandardOutput=append:%h/dev/data/news_briefing/data/logs/systemd_daily.log
+StandardError=inherit
+EnvironmentFile=-%h/dev/data/news_briefing/.env

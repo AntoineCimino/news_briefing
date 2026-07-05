@@ -56,6 +56,12 @@ pytest tests/ -v
 
 ---
 
+## Scheduling
+
+Daily run via systemd `--user` timer `news-briefing-daily.timer` (07:00) — see `systemd/`. Logs: `data/logs/systemd_daily.log` + `data/logs/<date>.log` (written by `daily_run.sh` itself).
+
+---
+
 ## Development rules
 
 - All code in `src/` — no logic in `app/` beyond rendering
