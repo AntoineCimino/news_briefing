@@ -555,3 +555,25 @@ Added: 2026-03-23 | Priority: Haute
 - [ ] Cron `daily_run.sh` auto-détecte le mode (api > local > no-llm)
 - [ ] Telegram : message reçu sur mobile après run (si token configuré)
 - [ ] Déduplication : aucun article en double sur 2 runs consécutifs
+
+---
+
+## [TODO] BUG-001 — `daily_run.sh` appelle `python` (absent), casse le run systemd
+
+Added: 2026-07-10 | Priority: Haute
+Playbook: bug_investigation
+
+### Contexte
+Réactivation du timer systemd `news-briefing-daily.timer` (voir `PLAN-revive-daily-timers.md`) : le premier run de rattrapage a échoué avec `ExecMainStatus=127`.
+`data/logs/2026-07-10.log` montre l'erreur exacte : `scripts/daily_run.sh: line 32: python: command not found`.
+
+### Root cause
+`scripts/daily_run.sh` appelle `python -m src.main run ...` (binaire nu). Sur cette machine seul `python3` est sur le PATH — pas d'alias `python`. Le script n'a pas de `.venv/` local dont l'activation fournirait normalement un shim `python` (contrairement à d'autres projets du monorepo). `set -euo pipefail` fait avorter le script immédiatement à cette ligne.
+
+### Work
+- Soit appeler `python3` explicitement dans `daily_run.sh`
+- Soit s'assurer qu'un `.venv/` existe et est activé par le script (fallback venv-activation) pour fournir un shim `python`
+
+### Done when
+- [ ] `systemctl --user start news-briefing-daily.service` se termine avec `Result=success` / `ExecMainStatus=0`
+- [ ] `data/logs/<date>.log` montre un run complet (pas d'échec à l'étape `python -m src.main run`)
