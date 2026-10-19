@@ -1,0 +1,61 @@
+├── .env.example
+├── .gitignore
+├── .pytest_cache
+│   ├── .gitignore
+│   ├── CACHEDIR.TAG
+│   ├── README.md
+│   └── v
+│       └── cache
+│           ├── lastfailed
+│           └── nodeids
+├── CLAUDE.md
+├── README.md
+├── app
+│   ├── static
+│   │   └── style.css
+│   ├── templates
+│   │   ├── base.html
+│   │   ├── briefing.html
+│   │   ├── history.html
+│   │   ├── index.html
+│   │   └── market.html
+│   └── webapp.py
+├── requirements.txt
+├── scripts
+│   └── daily_run.sh
+├── src
+│   ├── __init__.py
+│   ├── collectors
+│   │   ├── __init__.py
+│   │   ├── hn_collector.py
+│   │   ├── market_collector.py
+│   │   ├── newsapi_collector.py
+│   │   └── rss_collector.py
+│   ├── llm
+│   │   ├── __init__.py
+│   │   ├── api_client.py
+│   │   ├── ollama_client.py
+│   │   └── synthesizer.py
+│   ├── main.py
+│   ├── notifications
+│   │   ├── __init__.py
+│   │   └── telegram_notifier.py
+│   ├── processors
+│   │   ├── __init__.py
+│   │   ├── categorizer.py
+│   │   ├── dedup.py
+│   │   ├── ranker.py
+│   │   └── relevance_filter.py
+│   └── storage
+│       ├── __init__.py
+│       └── database.py
+├── tasks
+│   └── backlog.md
+└── tests
+    ├── conftest.py
+    ├── test_collectors.py
+    ├── test_database.py
+    ├── test_main.py
+    ├── test_processors.py
+    ├── test_synthesizer.py
+    └── test_telegram.py
