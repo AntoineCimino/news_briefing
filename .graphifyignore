@@ -1,0 +1,11 @@
+**/*.min.js
+**/*.umd.js
+**/static/
+**/node_modules/
+data/raw/
+data/cache/
+outputs/
+*.csv
+*.parquet
+.claude/
+tasks/
